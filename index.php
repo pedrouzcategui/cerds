@@ -129,43 +129,40 @@ $totalPaymentsUSD = Payment::getTotalPayments('USD');
     <?php include_once 'partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <?=
-        Utils::prettyDump($_SESSION);
-        ?>
-        <h1>Pookie and Car</h1>
+        <h1>Métricas</h1>
         <div class="metrics-grid">
             <div class="metric">
-                <h3>Total Students</h3>
+                <h3>Total de Estudiantes</h3>
                 <p><?= $totalStudents ?></p>
             </div>
             <div class="metric">
-                <h3>Total Instructors</h3>
+                <h3>Total de Instructores</h3>
                 <p><?= $totalInstructors ?></p>
             </div>
             <div class="metric">
-                <h3>Total Labs</h3>
+                <h3>Total de Laboratorios</h3>
                 <p><?= $totalLabs ?></p>
             </div>
             <div class="metric">
-                <h3>Total Payments in VES</h3>
+                <h3>Total de pagos en Bolívares</h3>
                 <p><?= number_format($totalPaymentsVES, 2) ?> VES</p>
             </div>
             <div class="metric">
-                <h3>Total Payments in USD</h3>
+                <h3>Total de pagos en Dólares</h3>
                 <p><?= number_format($totalPaymentsUSD, 2) ?> USD</p>
             </div>
         </div>
 
         <div class="card">
-            <h3>Latest Courses</h3>
+            <h3>Últimos cursos agregados</h3>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Status</th>
+                        <th>Nombre del curso</th>
+                        <th>Fecha de Inicio</th>
+                        <th>Fecha de Finalización</th>
+                        <th>Estado del curso</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -183,7 +180,7 @@ $totalPaymentsUSD = Payment::getTotalPayments('USD');
         </div>
 
         <div class="card">
-            <h3>Latest Payments</h3>
+            <h3>Ultimos pagos registrados: </h3>
             <table>
                 <thead>
                     <tr>

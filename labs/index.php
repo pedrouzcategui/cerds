@@ -82,6 +82,27 @@ $labs = Lab::getAll('DESC');
             background-color: #007BFF;
             color: white;
         }
+
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-add {
+            background-color: #28a745;
+        }
+
+        .btn-edit {
+            background-color: rgb(239, 148, 0);
+        }
+
+        .btn-delete {
+            background-color: #DC3545;
+        }
     </style>
 </head>
 
@@ -91,15 +112,19 @@ $labs = Lab::getAll('DESC');
     <div class="content">
         <h2>Lab Management</h2>
         <div class="card">
-            <a href="form.php" class="btn btn-add">Add New Lab</a>
+            <a href="form.php">
+                <button class="btn btn-add">
+                    Añadir Nuevo Laboratorio
+                </button>
+            </a>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Capacity</th>
-                        <th>Schedule</th>
-                        <th>Actions</th>
+                        <th>Nombre</th>
+                        <th>Capacidad</th>
+                        <th>Horario</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

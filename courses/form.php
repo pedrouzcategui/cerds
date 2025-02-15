@@ -32,8 +32,12 @@ $statuses = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Course</title>
+    <title>Crear Curso</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -80,6 +84,10 @@ $statuses = [
             margin: 0 auto;
         }
 
+        form div {
+            width: 100%;
+        }
+
         label {
             font-weight: bold;
             display: block;
@@ -91,12 +99,13 @@ $statuses = [
         input[type="date"],
         textarea,
         select {
-            width: calc(100% - 24px);
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 14px;
+            resize: none;
         }
 
         button {
@@ -121,20 +130,20 @@ $statuses = [
     <?php include '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2><?= $is_edit ? "Edit Course" : "Create Course" ?></h2>
+        <h2><?= $is_edit ? "Editar Curso" : "Crear Curso" ?></h2>
         <form method="POST" action="<?= $is_edit ? "update.php?course_id=" . $course->getId() : "create.php" ?>">
             <div>
-                <label for="name">Course Name</label>
+                <label for="name">Nombre del curso</label>
                 <input type="text" id="name" name="name" value="<?= $course !== null ? $course->getName() : "" ?>" required>
             </div>
             <div>
-                <label for="description">Course Description</label>
+                <label for="description">Descripción del curso</label>
                 <textarea type="text" id="description" name="description" required><?= $course !== null ? htmlspecialchars($course->getDescription()) : "" ?></textarea>
             </div>
             <div>
-                <label for="instructor">Course Instructor</label>
+                <label for="instructor">Instructor del curso</label>
                 <select id="instructor" name="instructor_id" required>
-                    <option disabled>-- Select Instructor --</option>
+                    <option disabled>-- Selecciona el instructor --</option>
                     <?php foreach ($instructors as $instructor): ?>
                         <option value="<?= $instructor->getId() ?>" selected="<?= $course !== null && $course->getInstructorId() == $instructor->getId() ?>">
                             <?= htmlspecialchars($instructor->getFullName()) ?>
@@ -143,9 +152,9 @@ $statuses = [
                 </select>
             </div>
             <div>
-                <label for="lab">Where the course will be taught</label>
+                <label for="lab">Laboratorio en donde el curso va a ser dictado</label>
                 <select id="lab" name="lab_id" required>
-                    <option disabled>-- Select Lab --</option>
+                    <option disabled>-- Selecciona el laboratorio --</option>
                     <?php foreach ($labs as $lab): ?>
                         <option value="<?= $lab->getId() ?>" selected="<?= $course !== null && $course->getLabId() == $lab->getId() ?>">
                             <?= htmlspecialchars($lab->getName()) ?>
@@ -154,11 +163,11 @@ $statuses = [
                 </select>
             </div>
             <div>
-                <label for="start_date">Start Date</label>
+                <label for="start_date">Fecha de inicio</label>
                 <input type="date" id="start_date" name="start_date" required value="<?= $course !== null ? $course->getStartDate() : "" ?>">
             </div>
             <div>
-                <label for="end_date">End Date</label>
+                <label for="end_date">Fecha de finalización</label>
                 <input type="date" id="end_date" name="end_date" required value="<?= $course !== null ? $course->getEndDate() : "" ?>">
             </div>
             <div>

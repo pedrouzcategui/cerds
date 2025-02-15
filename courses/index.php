@@ -124,6 +124,10 @@ $courses = Course::getAll('DESC');
             display: flex;
             gap: 10px;
         }
+
+        .text-left {
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -133,7 +137,11 @@ $courses = Course::getAll('DESC');
     <div class="content">
         <h2>Cursos</h2>
         <div class="card">
-            <a href="form.php" class="btn btn-add">Añadir nuevo curso</a>
+            <a href="form.php">
+                <button class="btn btn-add">
+                    Añadir nuevo curso
+                </button>
+            </a>
             <table>
                 <thead>
                     <tr>
@@ -145,7 +153,7 @@ $courses = Course::getAll('DESC');
                         <th>Fecha de Inicio</th>
                         <th>Fecha de Finalización</th>
                         <th>Estatus</th>
-                        <th>Actions</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

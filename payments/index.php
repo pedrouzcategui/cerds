@@ -172,21 +172,25 @@ $payments = Payment::getAll('DESC');
     <?php include_once '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2>Payments</h2>
+        <h2>Pagos</h2>
         <div class="card">
-            <a href="form.php" class="btn btn-add">Add New Payment</a>
+            <a href="form.php">
+                <button class="btn btn-add">
+                    Añadir un nuevo pago
+                </button>
+            </a>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Student ID</th>
-                        <th>Course ID</th>
-                        <th>Amount</th>
-                        <th>Currency</th>
-                        <th>Reference</th>
-                        <th>Image</th>
-                        <th>Date</th>
-                        <th>Status</th>
+                        <th>Estudiante</th>
+                        <th>Curso</th>
+                        <th>Monto</th>
+                        <th>Moneda</th>
+                        <th>Referencia</th>
+                        <th>Imagen</th>
+                        <th>Fecha de pago</th>
+                        <th>Estado</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

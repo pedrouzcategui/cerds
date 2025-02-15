@@ -5,7 +5,6 @@ session_start();
 require_once "../utils.php";
 require_once "./Instructor.php";
 require_once "../logs/Log.php";
-// Receive shit from post
 
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];

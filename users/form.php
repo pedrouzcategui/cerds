@@ -1,8 +1,8 @@
 <?php
-require_once "../middleware.php";
+// require_once "../middleware.php";
 require_once "./User.php";
 
-checkAuth();
+// checkAuth();
 
 $is_edit = isset($_GET['is_edit']);
 $user_id = isset($_GET['user_id']);

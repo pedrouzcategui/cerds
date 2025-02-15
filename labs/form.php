@@ -24,7 +24,7 @@ if ($is_edit && $lab_id) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labs Management</title>
+    <title>Administración de Laboratorios</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -200,15 +200,15 @@ if ($is_edit && $lab_id) {
 
     <div class="content">
         <div class="container">
-            <h2>Labs Management</h2>
+            <h2> <?= $is_edit ? "Editar Laboratorio" : "Crear Laboratorio" ?> </h2>
             <form method="POST" action="<?= $is_edit ? 'update.php?lab_id=' . $lab->getId() : 'create.php' ?>">
                 <input type="hidden" name="id" value="<?= $is_edit ? $lab->getId() : '' ?>">
                 <div>
-                    <label for="name">Lab Name</label>
+                    <label for="name">Nombre del laboratorio</label>
                     <input type="text" id="name" name="name" value="<?= $is_edit ? $lab->getName() : "" ?>" required>
                 </div>
                 <div>
-                    <label for="capacity">Capacity</label>
+                    <label for="capacity">Capacidad</label>
                     <input type="number" id="capacity" name="capacity" value="<?= $is_edit ? $lab->getCapacity() : "" ?>" required>
                 </div>
 
@@ -230,23 +230,23 @@ if ($is_edit && $lab_id) {
                                 <?php if ($is_edit && isset($lab_schedule[$key])): ?>
                                     <?php foreach ($lab_schedule[$key] as $index => $slot): ?>
                                         <div class="slot" id="<?= $key ?>_slot_<?= $index + 1 ?>">
-                                            <span>Slot #<?= $index + 1 ?></span>
+                                            <span>Horario #<?= $index + 1 ?></span>
                                             <label>
-                                                From
+                                                Desde
                                                 <input type='time' name='<?= $key ?>_start_time_slot_<?= $index + 1 ?>' value="<?= htmlspecialchars($slot['start_date']) ?>" class="slot-input" oninput="validateSlots('<?= $key ?>')" />
-                                                To
+                                                Hasta
                                                 <input type='time' name='<?= $key ?>_end_time_slot_<?= $index + 1 ?>' value="<?= htmlspecialchars($slot['end_date']) ?>" class="slot-input" oninput="validateSlots('<?= $key ?>')" />
                                             </label>
-                                            <button type="button" class="remove-btn" onclick="removeSlot('<?= $key ?>', this)">Remove</button>
+                                            <button type="button" class="remove-btn" onclick="removeSlot('<?= $key ?>', this)">Remover</button>
                                         </div>
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <div class="slot" id="<?= $key ?>_slot_1">
-                                        <span>Slot #1</span>
+                                        <span>Horario #1</span>
                                         <label>
-                                            From
+                                            Desde
                                             <input type='time' name='<?= $key ?>_start_time_slot_1' class="slot-input" oninput="validateSlots('<?= $key ?>')" />
-                                            To
+                                            Hasta
                                             <input type='time' name='<?= $key ?>_end_time_slot_1' class="slot-input" oninput="validateSlots('<?= $key ?>')" />
                                         </label>
                                     </div>
@@ -262,6 +262,130 @@ if ($is_edit && $lab_id) {
     </div>
 
     <script>
+        function validateSlots(day) {
+            // Grab the main error message container
+            const errorMessageElement = document.getElementById("error-message");
+            // Clear previous error state
+            errorMessageElement.style.display = "none";
+            errorMessageElement.innerHTML = "";
+
+            // Grab all the slots for the specified day
+            const slotsContainer = document.getElementById(`slots_${day}`);
+            const slots = slotsContainer.querySelectorAll(".slot");
+
+            // We'll track the end time of the last valid slot
+            let lastEndTime = "";
+            let hasError = false;
+
+            // Iterate over each slot
+            for (let i = 0; i < slots.length; i++) {
+                const timeInputs = slots[i].querySelectorAll(".slot-input");
+                const startValue = timeInputs[0].value; // "HH:MM"
+                const endValue = timeInputs[1].value; // "HH:MM"
+
+                // Clear any previous error style
+                slots[i].classList.remove("invalid-slot");
+
+                // ─────────────────────────────────────────────────────
+                // RULE: A slot cannot be completely empty
+                //      (both start & end blank).
+                // ─────────────────────────────────────────────────────
+                if (!startValue && !endValue) {
+                    hasError = true;
+                    slots[i].classList.add("invalid-slot");
+                    errorMessageElement.innerHTML =
+                        "Ningún slot puede estar totalmente en blanco (hora de inicio y fin vacías).";
+                }
+
+                // If both times are provided, check the other rules:
+                if (startValue && endValue) {
+                    // RULE: Start time cannot be >= end time
+                    if (startValue >= endValue) {
+                        hasError = true;
+                        slots[i].classList.add("invalid-slot");
+                        errorMessageElement.innerHTML =
+                            "La hora de inicio no puede ser mayor o igual que la hora de fin.";
+                    }
+
+                    // RULE: Each subsequent slot must start strictly after the previous slot’s end time
+                    if (lastEndTime && startValue <= lastEndTime) {
+                        hasError = true;
+                        slots[i].classList.add("invalid-slot");
+                        errorMessageElement.innerHTML =
+                            "La hora de inicio del siguiente slot debe ser posterior a la hora de fin del slot anterior.";
+                    }
+                }
+
+                // If no error so far for this slot, update lastEndTime to the current slot's end time
+                // (only if endValue is actually filled)
+                if (!hasError && endValue) {
+                    lastEndTime = endValue;
+                }
+            }
+
+            // If any error is detected, display the error message container
+            if (hasError) {
+                errorMessageElement.style.display = "block";
+            }
+        }
+
+        function addSlot(day) {
+            const slotsContainer = document.getElementById(`slots_${day}`).querySelector('.slots-list');
+            const allSlots = slotsContainer.querySelectorAll('.slot');
+
+            // ─────────────────────────────────────────────────────────
+            //   PREVENT ADDING A NEW SLOT IF THE LAST SLOT IS EMPTY
+            // ─────────────────────────────────────────────────────────
+            if (allSlots.length > 0) {
+                const lastSlot = allSlots[allSlots.length - 1];
+                const timeInputs = lastSlot.querySelectorAll('.slot-input');
+                const startValue = timeInputs[0].value;
+                const endValue = timeInputs[1].value;
+
+                if (!startValue && !endValue) {
+                    alert("No puedes agregar un nuevo slot si el anterior está vacío (sin hora de inicio y fin).");
+                    return;
+                }
+            }
+
+            const slotCount = allSlots.length + 1;
+            const newSlot = document.createElement('div');
+            newSlot.classList.add('slot');
+            newSlot.id = `${day}_slot_${slotCount}`;
+            newSlot.innerHTML = `
+            <span>Horario #${slotCount}</span>
+            <label>
+                Desde
+                <input type='time' name='${day}_start_time_slot_${slotCount}' 
+                       class="slot-input" oninput="validateSlots('${day}')" />
+                Hasta
+                <input type='time' name='${day}_end_time_slot_${slotCount}' 
+                       class="slot-input" oninput="validateSlots('${day}')" />
+            </label>
+            <button type="button" class="remove-btn" onclick="removeSlot('${day}', this)">Remover</button>
+        `;
+
+            slotsContainer.appendChild(newSlot);
+            renumberSlots(day);
+        }
+
+        function removeSlot(day, button) {
+            button.closest('.slot').remove();
+            renumberSlots(day);
+        }
+
+        function renumberSlots(day) {
+            const slots = document.getElementById(`slots_${day}`).querySelectorAll('.slot');
+            slots.forEach((slot, index) => {
+                slot.querySelector('span').textContent = `Horario #${index + 1}`;
+                const timeInputs = slot.querySelectorAll('input[type="time"]');
+
+                // Re-assign the name attributes to keep them consistent
+                timeInputs[0].name = `${day}_start_time_slot_${index + 1}`;
+                timeInputs[1].name = `${day}_end_time_slot_${index + 1}`;
+            });
+        }
+
         function addSlot(day) {
             const slotsContainer = document.getElementById(`slots_${day}`).querySelector('.slots-list');
             const slotCount = slotsContainer.getElementsByClassName('slot').length + 1;
@@ -269,14 +393,14 @@ if ($is_edit && $lab_id) {
             const newSlot = document.createElement('div');
             newSlot.classList.add('slot');
             newSlot.innerHTML = `
-                <span>Slot #${slotCount}</span>
+                <span>Horario #${slotCount}</span>
                 <label>
-                    From
+                    Desde
                     <input type='time' name='${day}_start_time_slot_${slotCount}' class="slot-input" oninput="validateSlots('${day}')" />
-                    To
+                    Hasta
                     <input type='time' name='${day}_end_time_slot_${slotCount}' class="slot-input" oninput="validateSlots('${day}')" />
                 </label>
-                <button type="button" class="remove-btn" onclick="removeSlot('${day}', this)">Remove</button>
+                <button type="button" class="remove-btn" onclick="removeSlot('${day}', this)">Remover</button>
             `;
             slotsContainer.appendChild(newSlot);
             renumberSlots(day);
@@ -290,7 +414,7 @@ if ($is_edit && $lab_id) {
         function renumberSlots(day) {
             const slots = document.getElementById(`slots_${day}`).querySelectorAll('.slot');
             slots.forEach((slot, index) => {
-                slot.querySelector('span').textContent = `Slot #${index + 1}`;
+                slot.querySelector('span').textContent = `Horario #${index + 1}`;
                 slot.querySelector('input[type="time"]').name = `${day}_start_time_slot_${index + 1}`;
                 slot.querySelectorAll('input[type="time"]')[1].name = `${day}_end_time_slot_${index + 1}`;
             });

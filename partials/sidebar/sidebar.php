@@ -68,14 +68,14 @@
 
 <div class="sidebar">
     <h2 style="text-align: center;">CERDS</h2>
-    <a href="/sistema-cursos/index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-    <a href="/sistema-cursos/courses/index.php"><i class="fas fa-book"></i> Courses</a>
-    <a href="/sistema-cursos/payments/index.php"><i class="fas fa-money-check-alt"></i> Payments</a>
-    <a href="/sistema-cursos/students/index.php"><i class="fas fa-user-graduate"></i> Students</a>
-    <a href="/sistema-cursos/instructors/index.php"><i class="fas fa-chalkboard-teacher"></i> Instructors</a>
-    <a href="/sistema-cursos/labs/index.php"><i class="fas fa-flask"></i> Labs</a>
-    <a href="/sistema-cursos/users/index.php"><i class="fas fa-users"></i> Users</a>
-    <a href="/sistema-cursos/pto/index.php"><i class="fas fa-calendar-alt"></i> PTO</a>
-    <a href="/sistema-cursos/logs.php">Logs</a>
+    <a href="/sistema-cursos/index.php"><i class="fas fa-tachometer-alt"></i> Panel de Administración</a>
+    <a href="/sistema-cursos/courses/index.php"><i class="fas fa-book"></i> Cursos</a>
+    <a href="/sistema-cursos/payments/index.php"><i class="fas fa-money-check-alt"></i> Pagos</a>
+    <a href="/sistema-cursos/students/index.php"><i class="fas fa-user-graduate"></i> Estudiantes </a>
+    <a href="/sistema-cursos/instructors/index.php"><i class="fas fa-chalkboard-teacher"></i> Instructores </a>
+    <a href="/sistema-cursos/labs/index.php"><i class="fas fa-flask"></i> Laboratorios </a>
+    <a href="/sistema-cursos/users/index.php"><i class="fas fa-users"></i> Usuarios </a>
+    <a href="/sistema-cursos/pto/index.php"><i class="fas fa-calendar-alt"></i> Solicitudes </a>
+    <a href="/sistema-cursos/logs.php">Registro de sistema</a>
     <a href="/sistema-cursos/logout.php">Logout</a>
 </div>
