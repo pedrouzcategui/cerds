@@ -55,7 +55,7 @@ CREATE TABLE courses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (instructor_id) REFERENCES instructors(id),
+    FOREIGN KEY (instructor_id) REFERENCES instructors(id) ON DELETE SET NULL,
     FOREIGN KEY (lab_id) REFERENCES labs(id)
 );
 

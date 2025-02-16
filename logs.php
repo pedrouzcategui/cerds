@@ -87,7 +87,7 @@ $logs = Log::getAll('DESC');
     <?php include_once 'partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2>Logs</h2>
+        <h2>Registro del sistema</h2>
         <div class="card">
             <table>
                 <thead>

@@ -252,7 +252,7 @@ if ($is_edit && $lab_id) {
                                     </div>
                                 <?php endif; ?>
                             </div>
-                            <button type="button" class="add-slot-btn" onclick="addSlot('<?= $key ?>')">Add New Slot</button>
+                            <button type="button" class="add-slot-btn" onclick="addSlot('<?= $key ?>')">Añadir nuevo bloque</button>
                         </div>
                     <?php endforeach; ?>
                 </div>

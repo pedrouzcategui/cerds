@@ -75,7 +75,7 @@ unset($_SESSION['error']);
 
 <body>
     <div>
-        <h2>Login1</h2>
+        <h2>Login</h2>
         <?php if ($error): ?>
             <p style="color: red;"><?= $error ?></p>
         <?php endif; ?>

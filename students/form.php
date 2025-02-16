@@ -23,63 +23,58 @@ if ($is_edit && $student_id) {
     <title>Student Management</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: white;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .content {
+            margin-left: 250px;
             padding: 20px;
+            width: calc(100% - 250px);
         }
 
         .container {
-            max-width: 800px;
-            margin: auto;
             background: #fff;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         h2 {
             text-align: center;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        th {
-            background-color: #007BFF;
-            color: white;
-        }
-
-        .btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-
-        .btn-add {
-            background-color: #28a745;
-        }
-
-        .btn-edit {
-            background-color: #ffc107;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
         }
 
         .form-group {
@@ -98,36 +93,47 @@ if ($is_edit && $student_id) {
             box-sizing: border-box;
         }
 
-        .actions {
-            display: flex;
-            gap: 10px;
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background-color: #28a745;
+            width: 100%;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <a href="./">Volver a la tabla de estudiantes</a>
-        <h2> <?= $is_edit ? "Editar" : "Crear" ?> Perfil de Estudiante</h2>
-        <form action="<?= $is_edit ? './update.php?student_id=' . $student->getId() : './create.php' ?>" method="POST">
-            <div class="form-group">
-                <label for="first_name">First Name</label>
-                <input type="text" id="first_name" name="first_name" value="<?= $student != null ? $student->getFirstName() : "" ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="last_name">Last Name</label>
-                <input type="text" id="last_name" name="last_name" value="<?= $student != null ? $student->getLastName() : "" ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" value="<?= $student != null ? $student->getEmail() : "" ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Phone</label>
-                <input type="text" id="phone" name="phone" value="<?= $student != null ? $student->getPhone() : "" ?>" required>
-            </div>
-            <button type="submit" class="btn btn-add"><?= $is_edit ? "Actualizar" : "Crear" ?></button>
-        </form>
+    <?php include '../partials/sidebar/sidebar.php'; ?>
+
+    <div class="content">
+        <div class="container">
+            <a href="./">Volver a la tabla de estudiantes</a>
+            <h2> <?= $is_edit ? "Editar" : "Crear" ?> Perfil de Estudiante</h2>
+            <form action="<?= $is_edit ? './update.php?student_id=' . $student->getId() : './create.php' ?>" method="POST">
+                <div class="form-group">
+                    <label for="first_name">Nombre</label>
+                    <input type="text" id="first_name" name="first_name" value="<?= $student != null ? $student->getFirstName() : "" ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Apellido</label>
+                    <input type="text" id="last_name" name="last_name" value="<?= $student != null ? $student->getLastName() : "" ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="<?= $student != null ? $student->getEmail() : "" ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="text" id="phone" name="phone" value="<?= $student != null ? $student->getPhone() : "" ?>" required>
+                </div>
+                <button type="submit" class="btn"><?= $is_edit ? "Actualizar" : "Crear" ?></button>
+            </form>
+        </div>
     </div>
 </body>
 

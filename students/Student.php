@@ -46,6 +46,12 @@ class Student
         return $this->phone;
     }
 
+    // Utility Getter Method
+    public function getFullName()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
     // Setters
     public function setId($id)
     {
@@ -70,7 +76,7 @@ class Student
     public static function getAll($order = 'ASC')
     {
         $order = strtoupper($order) === 'DESC' ? 'DESC' : 'ASC';
-        $result = DB::query("SELECT * FROM students ORDER BY last_name $order");
+        $result = DB::query("SELECT * FROM students ORDER BY id $order");
         $students = [];
         foreach ($result as $student) {
             $students[] = new self(
