@@ -14,7 +14,7 @@ $labs = Lab::getAll('DESC');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab Management</title>
+    <title>Administración de Laboratorios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
@@ -110,7 +110,7 @@ $labs = Lab::getAll('DESC');
     <?php include_once '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2>Lab Management</h2>
+        <h2>Administración de Laboratorios</h2>
         <div class="card">
             <a href="form.php">
                 <button class="btn btn-add">
@@ -135,8 +135,8 @@ $labs = Lab::getAll('DESC');
                             <td><?= $lab->getCapacity() ?> </td>
                             <td><?= $lab->printPrettySchedule() ?></td>
                             <td class="actions">
-                                <a href="form.php?is_edit=true&lab_id=<?= $lab->getId() ?>" class="btn btn-edit">Edit</a>
-                                <a href="delete.php?lab_id=<?= $lab->getId() ?>" class="btn btn-delete">Delete</a>
+                                <a href="form.php?is_edit=true&lab_id=<?= $lab->getId() ?>" class="btn btn-edit">Editar</a>
+                                <a href="delete.php?lab_id=<?= $lab->getId() ?>" class="btn btn-delete">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

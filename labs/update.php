@@ -1,7 +1,11 @@
 <?php
 
+require_once "../middleware.php";
 require_once "../utils.php";
 require_once "./Lab.php";
+require_once "../logs/Log.php";
+
+checkAuth();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Collect Lab Name and Capacity
@@ -44,6 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Create the final data structure
     try {
         $lab = Lab::update($labId, $labName, $labCapacity, json_encode($labSchedule));
+
+        $user_id = $_SESSION['user_id'];
+        Log::create($user_id, "Laboratorio actualizado: " . $lab->getId() . " - " . $lab->getName());
+
         header("Location: ./");
     } catch (\Throwable $th) {
         Utils::prettyDump($th);

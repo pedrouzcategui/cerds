@@ -118,13 +118,14 @@ class Lab
     public static function update($id, $name, $capacity, $schedule)
     {
         try {
-            $update = DB::query(
+            DB::query(
                 "UPDATE " . self::$table . " SET name = ?, capacity = ?, schedule = ?, updated_at = NOW() WHERE id = ?",
                 [$name, $capacity, $schedule, $id]
             );
-            return $update;
+            return self::findById($id);
         } catch (\Throwable $th) {
             Utils::prettyDump($th);
+            return null;
         }
     }
     public static function delete($id)
@@ -155,7 +156,7 @@ class Lab
             $html .= "<div class='day'><h3>{$dayName}</h3><ul>";
 
             foreach ($slots as $slot) {
-                $html .= "<li><strong>From:</strong> {$slot['start_date']} <strong>To:</strong> {$slot['end_date']}</li>";
+                $html .= "<li><strong>Desde:</strong> {$slot['start_date']} <strong>Hasta:</strong> {$slot['end_date']}</li>";
             }
 
             $html .= "</ul></div>";
