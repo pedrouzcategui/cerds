@@ -13,7 +13,7 @@ checkAuth();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instructor Management</title>
+    <title>Administración de Instructores</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
@@ -130,18 +130,22 @@ checkAuth();
     <?php include_once '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2>Instructor Management</h2>
+        <h2>Administración de Instructores</h2>
         <div class="card">
-            <a href="form.php" class="btn btn-add">Add New Instructor</a>
+            <a href="form.php">
+                <button class="btn btn-add">
+                    Añadir Nuevo Instructor
+                </button>
+            </a>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,8 +157,8 @@ checkAuth();
                             <td><?= $instructor->getEmail() ?></td>
                             <td><?= $instructor->getPhone() ?></td>
                             <td class="actions">
-                                <a href="form.php?is_edit=true&instructor_id=<?= $instructor->getId() ?>" class="btn btn-edit">Edit</a>
-                                <a href="delete.php?instructor_id=<?= $instructor->getId() ?>" class="btn btn-delete">Delete</a>
+                                <a href="form.php?is_edit=true&instructor_id=<?= $instructor->getId() ?>" class="btn btn-edit">Editar</a>
+                                <a href="delete.php?instructor_id=<?= $instructor->getId() ?>" class="btn btn-delete">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
