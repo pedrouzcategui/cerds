@@ -14,7 +14,7 @@ $users = User::getAll('DESC');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users</title>
+    <title>Usuarios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
@@ -131,17 +131,21 @@ $users = User::getAll('DESC');
     <?php include_once '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2>Users</h2>
+        <h2>Usuarios</h2>
         <div class="card">
-            <a href="form.php" class="btn btn-add">Add New User</a>
+            <a href="form.php">
+                <button class="btn btn-add">
+                    Añadir Nuevo usuario
+                </button>
+            </a>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
+                        <th>Nombre de usuario</th>
                         <th>Email</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -152,8 +156,8 @@ $users = User::getAll('DESC');
                             <td><?= $user->getEmail() ?></td>
                             <td><?= $user->getPhone() ?></td>
                             <td class="actions">
-                                <a href="form.php?is_edit=true&user_id=<?= $user->getId() ?>" class="btn btn-edit">Edit</a>
-                                <a href="delete.php?user_id=<?= $user->getId() ?>" class="btn btn-delete">Delete</a>
+                                <a href="form.php?is_edit=true&user_id=<?= $user->getId() ?>" class="btn btn-edit">Editar</a>
+                                <a href="delete.php?user_id=<?= $user->getId() ?>" class="btn btn-delete">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
