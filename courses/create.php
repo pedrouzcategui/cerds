@@ -1,10 +1,11 @@
 <?php
 
-session_start();
-
+require_once "../middleware.php";
 require_once "../logs/Log.php";
 require_once "../utils.php";
 require_once "./Course.php";
+
+checkAuth();
 
 $course_name = $_POST['name'];
 $course_description = $_POST['description'];

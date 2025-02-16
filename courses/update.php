@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 require_once "../middleware.php";
 require_once "../logs/Log.php";
 require_once "../utils.php";
