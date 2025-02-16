@@ -168,8 +168,8 @@ $courses = Course::getAll('DESC');
                             <td><?= $course->getEndDate() ?></td>
                             <td><?= $course->getStatus() ?></td>
                             <td class="actions">
-                                <a href="form.php?is_edit=true&course_id=<?= $course->getId() ?>" class="btn btn-edit">Edit</a>
-                                <a href="delete.php?course_id=<?= $course->getId() ?>" class="btn btn-delete">Delete</a>
+                                <a href="form.php?is_edit=true&course_id=<?= $course->getId() ?>" class="btn btn-edit">Editar</a>
+                                <a href="delete.php?course_id=<?= $course->getId() ?>" class="btn btn-delete">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

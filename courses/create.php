@@ -17,6 +17,6 @@ $course_status = $_POST['status'];
 $course = Course::create($course_instructor_id, $lab_id, $course_name, $course_description, $start_date, $end_date, $course_status);
 
 $user_id = $_SESSION['user_id'];
-Log::create($user_id, "Created a new course: " . $course->getName());
+Log::create($user_id, "Creo un nuevo curso: " . $course->getName());
 
 header("Location: ./");
