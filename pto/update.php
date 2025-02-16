@@ -1,12 +1,10 @@
 <?php
 
-// require_once "../middleware.php";
+require_once "../middleware.php";
 require_once "./PTO.php";
 require_once "../logs/Log.php";
 
-// checkAuth();
-
-session_start();
+checkAuth();
 
 // Receive data from POST request
 $pto_id = $_GET['pto_id'];
@@ -24,8 +22,8 @@ PTO::update($pto_id, $instructor_id, $course_id, $start_date, $end_date, $status
 PTO::adjustCourseEndDate($course_id, $start_date, $end_date);
 
 // Log the action
-// $user_id = $_SESSION['user_id'];
-// Log::create($user_id, "updated a PTO request for course ID $course_id");
+$user_id = $_SESSION['user_id'];
+Log::create($user_id, "Actualizo una solicitud de tiempo libre con ID: $pto_id");
 
 // Redirect to the PTO requests list or another appropriate page
 header("Location: ./");

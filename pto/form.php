@@ -24,9 +24,13 @@ $courses = Course::getAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $is_edit ? "Edit PTO Request" : "Submit PTO Request" ?></title>
+    <title><?= $is_edit ? "Editar solicitud de tiempo libre" : "Creación de solicitud de tiempo libre" ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -57,7 +61,7 @@ $courses = Course::getAll();
         input[type="text"],
         input[type="date"],
         select {
-            width: calc(100% - 24px);
+            width: calc(100%);
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
@@ -66,7 +70,7 @@ $courses = Course::getAll();
         }
 
         textarea {
-            width: calc(100% - 24px);
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
@@ -97,12 +101,12 @@ $courses = Course::getAll();
     <?php include '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
-        <h2><?= $is_edit ? "Edit PTO Request" : "Submit PTO Request" ?></h2>
+        <h2><?= $is_edit ? "Editar Solicitud de Tiempo Libre" : "Crear Solicitud de Tiempo Libre" ?></h2>
         <form method="POST" action="<?= $is_edit ? "update.php?pto_id=" . $pto->getId() : "create.php" ?>">
             <div>
                 <label for="instructor_id">Instructor</label>
                 <select id="instructor_id" name="instructor_id" required>
-                    <option disabled>-- Select Instructor --</option>
+                    <option disabled>-- Selecciona un instructor --</option>
                     <?php foreach ($instructors as $instructor): ?>
                         <option value="<?= $instructor->getId() ?>" <?= $pto !== null && $pto->getInstructorId() == $instructor->getId() ? 'selected' : '' ?>>
                             <?= htmlspecialchars($instructor->getFullName()) ?>
@@ -111,9 +115,9 @@ $courses = Course::getAll();
                 </select>
             </div>
             <div>
-                <label for="course_id">Course</label>
+                <label for="course_id">Curso</label>
                 <select id="course_id" name="course_id" required>
-                    <option disabled>-- Select Course --</option>
+                    <option disabled>-- Selecciona el curso --</option>
                     <?php foreach ($courses as $course): ?>
                         <option value="<?= $course->getId() ?>" <?= $pto !== null && $pto->getCourseId() == $course->getId() ? 'selected' : '' ?>>
                             <?= htmlspecialchars($course->getName()) ?>
@@ -122,18 +126,18 @@ $courses = Course::getAll();
                 </select>
             </div>
             <div>
-                <label for="start_date">Start Date</label>
+                <label for="start_date">Fecha de Inicio</label>
                 <input type="date" id="start_date" name="start_date" value="<?= $pto !== null ? $pto->getStartDate() : "" ?>" required>
             </div>
             <div>
-                <label for="end_date">End Date</label>
+                <label for="end_date">Fecha de Finalización</label>
                 <input type="date" id="end_date" name="end_date" value="<?= $pto !== null ? $pto->getEndDate() : "" ?>" required>
             </div>
             <div>
-                <label for="reason">Reason for PTO</label>
+                <label for="reason">Razón por la cual se está solicitando el tiempo libre</label>
                 <textarea id="reason" name="reason" rows="4" required><?= $pto !== null ? htmlspecialchars($pto->getReason()) : "" ?></textarea>
             </div>
-            <button type="submit"> <?= $is_edit ? "Update" : "Submit" ?> </button>
+            <button type="submit"> <?= $is_edit ? "Editar" : "Crear" ?> </button>
         </form>
     </div>
 </body>
