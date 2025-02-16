@@ -34,8 +34,12 @@ $currencies = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $is_edit ? "Edit Payment" : "Create Payment" ?></title>
+    <title><?= $is_edit ? "Editar Pago" : "Crear Pago" ?></title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -107,7 +111,7 @@ $currencies = [
         input[type="date"],
         textarea,
         select {
-            width: calc(100% - 24px);
+            width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
@@ -148,12 +152,12 @@ $currencies = [
 
     <div class="content">
         <div class="container">
-            <h2><?= $is_edit ? "Edit Payment" : "Create Payment" ?></h2>
+            <h2><?= $is_edit ? "Editar Pago" : "Crear Pago" ?></h2>
             <form method="POST" action="<?= $is_edit ? "update.php?payment_id=" . $payment->getId() : "create.php" ?>" enctype="multipart/form-data">
                 <div>
-                    <label for="student_id">Student</label>
+                    <label for="student_id">Estudiante</label>
                     <select id="student_id" name="student_id" required>
-                        <option disabled>-- Select Student --</option>
+                        <option disabled>-- Selecciona al Estudiante --</option>
                         <?php foreach ($students as $student): ?>
                             <option value="<?= $student->getId() ?>" <?= $payment !== null && $payment->getStudentId() == $student->getId() ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($student->getFirstName() . ' ' . $student->getLastName()) ?>
@@ -162,9 +166,9 @@ $currencies = [
                     </select>
                 </div>
                 <div>
-                    <label for="course_id">Course</label>
+                    <label for="course_id">Curso</label>
                     <select id="course_id" name="course_id" required>
-                        <option disabled>-- Select Course --</option>
+                        <option disabled>-- Selecciona el curso --</option>
                         <?php foreach ($courses as $course): ?>
                             <option value="<?= $course->getId() ?>" <?= $payment !== null && $payment->getCourseId() == $course->getId() ? 'selected' : '' ?>>
                                 <?= htmlspecialchars($course->getName()) ?>
@@ -173,13 +177,13 @@ $currencies = [
                     </select>
                 </div>
                 <div>
-                    <label for="amount">Amount</label>
+                    <label for="amount">Monto</label>
                     <input type="number" id="amount" name="amount" value="<?= $payment !== null ? $payment->getAmount() : "" ?>" required>
                 </div>
                 <div>
-                    <label for="currency">Currency</label>
+                    <label for="currency">Moneda</label>
                     <select id="currency" name="currency" required>
-                        <option disabled>-- Select Currency --</option>
+                        <option disabled>-- Selecciona la Moneda --</option>
                         <?php foreach ($currencies as $currency): ?>
                             <option value="<?= $currency ?>" <?= $payment !== null && $payment->getCurrency() == $currency ? 'selected' : '' ?>>
                                 <?= $currency ?>
@@ -188,11 +192,11 @@ $currencies = [
                     </select>
                 </div>
                 <div>
-                    <label for="reference">Reference</label>
-                    <input type="text" id="reference" name="reference" value="<?= $payment !== null ? $payment->getReference() : "" ?>" required>
+                    <label for="reference">Referencia (opcional)</label>
+                    <input type="text" id="reference" name="reference" value="<?= $payment !== null ? $payment->getReference() : "" ?>">
                 </div>
                 <div>
-                    <label for="image">Image</label>
+                    <label for="image">Imagen (opcional)</label>
                     <input type="file" id="image" name="image" <?= $payment !== null ? '' : 'required' ?>>
                     <?php if ($is_edit && $payment !== null && $payment->getImage()): ?>
                         <div class="image-preview" id="image-preview">
@@ -205,11 +209,11 @@ $currencies = [
                     <?php endif; ?>
                 </div>
                 <div>
-                    <label for="date">Date</label>
+                    <label for="date">Fecha del Pago</label>
                     <input type="date" id="date" name="date" value="<?= $payment !== null ? $payment->getDate() : "" ?>" required>
                 </div>
                 <div>
-                    <label for="status">Status</label>
+                    <label for="status">Estatus</label>
                     <select id="status" name="status" required>
                         <option value="" disabled>-- Select Status --</option>
                         <?php foreach ($statuses as $key => $value): ?>
@@ -219,7 +223,7 @@ $currencies = [
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <button type="submit"> <?= $is_edit ? "Update" : "Create" ?> </button>
+                <button type="submit"> <?= $is_edit ? "Actualizar" : "Crear" ?> </button>
             </form>
         </div>
     </div>

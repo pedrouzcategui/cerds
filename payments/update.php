@@ -1,7 +1,11 @@
 <?php
 
+require_once "../middleware.php";
+require_once "../logs/Log.php";
 require_once "../utils.php";
 require_once "./Payment.php";
+
+checkAuth();
 
 // Receive data from POST request
 $payment_id = $_GET['payment_id'];
@@ -31,6 +35,10 @@ if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
 
 // Update payment
 $payment = Payment::update($payment_id, $student_id, $course_id, $amount, $currency, $reference, $image, $date, $status);
+
+// Log the payment update
+$user_id = $_SESSION['user_id'];
+Log::create($user_id, "Pago con ID: $payment_id fue actualizado");
 
 // Redirect to the payments list or another appropriate page
 header("Location: ./");

@@ -191,7 +191,7 @@ $payments = Payment::getAll('DESC');
                         <th>Imagen</th>
                         <th>Fecha de pago</th>
                         <th>Estado</th>
-                        <th>Actions</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -204,7 +204,7 @@ $payments = Payment::getAll('DESC');
                             <td><?= $payment->getCurrency() ?></td>
                             <td><?= $payment->getReference() ?></td>
                             <td>
-                                <button onclick="showImageModal('<?= $payment->getImage() ?>')">See Image</button>
+                                <button onclick="showImageModal('<?= $payment->getImage() ?>')">Ver Imagen</button>
                             </td>
                             <td><?= $payment->getDate() ?></td>
                             <td><?= $payment->getStatus() ?></td>
