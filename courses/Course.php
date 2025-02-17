@@ -1,8 +1,8 @@
 <?php
 
-require_once "c:/xampp/htdocs/sistema-cursos/db.php";
-require_once "c:/xampp/htdocs/sistema-cursos/instructors/Instructor.php";
-require_once "c:/xampp/htdocs/sistema-cursos/labs/Lab.php";
+require_once __DIR__ . "/../db.php";
+require_once "../instructors/Instructor.php";
+require_once "../labs/Lab.php";
 
 class Course
 {

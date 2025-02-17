@@ -1,6 +1,6 @@
 <?php
-require_once "./logs/Log.php";
-require_once "./users/User.php";
+require_once "./Log.php";
+require_once "../users/User.php";
 session_start();
 
 $logs = Log::getAll('DESC');
@@ -84,7 +84,7 @@ $logs = Log::getAll('DESC');
 </head>
 
 <body>
-    <?php include_once 'partials/sidebar/sidebar.php'; ?>
+    <?php include_once '../partials/sidebar/sidebar.php'; ?>
 
     <div class="content">
         <h2>Registro del sistema</h2>

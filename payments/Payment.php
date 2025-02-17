@@ -1,8 +1,10 @@
 <?php
 
-require_once "c:/xampp/htdocs/sistema-cursos/db.php";
-require_once "c:/xampp/htdocs/sistema-cursos/instructors/Instructor.php";
-require_once "c:/xampp/htdocs/sistema-cursos/labs/Lab.php";
+require_once "../db.php";
+require_once "../instructors/Instructor.php";
+require_once "../students/Student.php";
+require_once "../labs/Lab.php";
+require_once "../courses/Course.php";
 
 class Payment
 {
@@ -15,6 +17,8 @@ class Payment
     private $image;
     private $date;
     private $status;
+    private $student;
+    private $course;
     private static $table = "payments";
 
     // Constructor
@@ -29,6 +33,8 @@ class Payment
         $this->setImage($image);
         $this->setDate($date);
         $this->setStatus($status);
+        $this->setStudent();
+        $this->setCourse();
     }
 
     // Getters
@@ -76,6 +82,14 @@ class Payment
     {
         return $this->status;
     }
+    public function getStudent()
+    {
+        return $this->student;
+    }
+    public function getCourse()
+    {
+        return $this->course;
+    }
 
     // Setters
     public function setId($id)
@@ -121,6 +135,14 @@ class Payment
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+    public function setStudent()
+    {
+        $this->student = Student::findById($this->student_id);
+    }
+    public function setCourse()
+    {
+        $this->course = Course::findById($this->course_id);
     }
 
     public static function getAll($order = 'ASC')

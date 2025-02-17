@@ -196,7 +196,7 @@ $currencies = [
                     <input type="text" id="reference" name="reference" value="<?= $payment !== null ? $payment->getReference() : "" ?>">
                 </div>
                 <div>
-                    <label for="image">Imagen (opcional)</label>
+                    <label for="image">Imagen</label>
                     <input type="file" id="image" name="image" <?= $payment !== null ? '' : 'required' ?>>
                     <?php if ($is_edit && $payment !== null && $payment->getImage()): ?>
                         <div class="image-preview" id="image-preview">

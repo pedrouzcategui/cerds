@@ -1,6 +1,7 @@
 <?php
 
 require_once "./utils.php";
+require_once "./db.php";
 require_once "./users/User.php";
 
 session_start();

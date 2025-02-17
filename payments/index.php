@@ -198,8 +198,8 @@ $payments = Payment::getAll('DESC');
                     <?php foreach ($payments as $payment): ?>
                         <tr>
                             <td><?= $payment->getId() ?></td>
-                            <td><?= $payment->getStudentId() ?></td>
-                            <td><?= $payment->getCourseId() ?></td>
+                            <td><?= $payment->getStudent()->getFullName() ?></td>
+                            <td><?= $payment->getCourse()->getName() ?></td>
                             <td><?= $payment->getAmount() ?></td>
                             <td><?= $payment->getCurrency() ?></td>
                             <td><?= $payment->getReference() ?></td>
@@ -209,8 +209,8 @@ $payments = Payment::getAll('DESC');
                             <td><?= $payment->getDate() ?></td>
                             <td><?= $payment->getStatus() ?></td>
                             <td class="actions">
-                                <a href="form.php?is_edit=true&payment_id=<?= $payment->getId() ?>" class="btn btn-edit">Edit</a>
-                                <a href="delete.php?payment_id=<?= $payment->getId() ?>" class="btn btn-delete">Delete</a>
+                                <a href="form.php?is_edit=true&payment_id=<?= $payment->getId() ?>" class="btn btn-edit">Editar</a>
+                                <a href="delete.php?payment_id=<?= $payment->getId() ?>" class="btn btn-delete">Eliminar</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

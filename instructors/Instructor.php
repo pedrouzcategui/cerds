@@ -1,6 +1,6 @@
 <?php
 
-require_once "c:/xampp/htdocs/sistema-cursos/db.php";
+require_once "../db.php";
 
 class Instructor
 {

@@ -32,7 +32,7 @@ $statuses = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Curso</title>
+    <title> <?= $is_edit ? "Editar Curso" : "Crear Curso" ?> </title>
     <style>
         * {
             box-sizing: border-box;

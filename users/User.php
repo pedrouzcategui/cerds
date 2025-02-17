@@ -1,7 +1,5 @@
 <?php
 
-require_once "c:/xampp/htdocs/sistema-cursos/db.php";
-
 class User
 {
     private $id;
