@@ -1,5 +1,7 @@
 <?php
 
+require_once '../db.php';
+
 class User
 {
     private $id;

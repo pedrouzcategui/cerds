@@ -234,7 +234,7 @@ class Payment
     public static function getTotalPayments($currency)
     {
         if (!in_array($currency, ['VES', 'USD'])) {
-            throw new InvalidArgumentException("Invalid currency. Only 'VES' and 'USD' are allowed.");
+            throw new InvalidArgumentException("Moneda invalida, solo se permiten bolivares y dolares");
         }
 
         $total = 0;
@@ -250,7 +250,7 @@ class Payment
     public static function getTotalPaymentsByCourse($course_id, $currency)
     {
         if (!in_array($currency, ['VES', 'USD'])) {
-            throw new InvalidArgumentException("Invalid currency. Only 'VES' and 'USD' are allowed.");
+            throw new InvalidArgumentException("Moneda invalida, solo se permiten bolivares y dolares");
         }
 
         $total = 0;

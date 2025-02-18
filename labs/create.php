@@ -21,12 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $slots = [];
             $slotIndex = 1;
 
-            // Iterate through all possible slots for the day
+            // Iterar sobre los slots posibles seleccionados
             while (isset($_POST["{$day}_start_time_slot_{$slotIndex}"]) && isset($_POST["{$day}_end_time_slot_{$slotIndex}"])) {
                 $startTime = $_POST["{$day}_start_time_slot_{$slotIndex}"];
                 $endTime = $_POST["{$day}_end_time_slot_{$slotIndex}"];
 
-                // Add the slot to the schedule if both start and end times are provided
+                // Añadir el slot si el tiempo de inicio y fin no están vacíos
                 if (!empty($startTime) && !empty($endTime)) {
                     $slots[] = [
                         'start_date' => $startTime,
@@ -37,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $slotIndex++;
             }
 
-            // Add slots for the day to the schedule if there are any
+            // Añadir los slots al día si no está vacío
             if (!empty($slots)) {
                 $labSchedule[$day] = $slots;
             }
         }
     }
 
-    // Create the final data structure
+    // Crear la estructura final, guardar JSON.
     try {
         $lab = Lab::create($labName, $labCapacity, json_encode($labSchedule));
 

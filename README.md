@@ -1,59 +1,43 @@
+![Main Banner](main-banner.png)
+
 # Sistema de administración de cursos CERDS
 
-El sistema de administración para cursos de CERDS permite gestionar estudiantes, cursos, instructores y laboratorios de manera eficiente.
+El sistema de administración de cursos CERDS es un sistema fácil de usar, con el cual se puede realizar las operaciones de registro de cursos, instructores, pagos, y mucho más.
 
-## Características
+# Instalación
 
-- **Gestión de Estudiantes**: Crear, editar y eliminar perfiles de estudiantes.
-- **Gestión de Cursos**: Crear, editar y eliminar cursos, asignar instructores y laboratorios, y definir el estado del curso.
-- **Gestión de Instructores**: Crear, editar y eliminar perfiles de instructores.
-- **Gestión de Laboratorios**: Crear, editar y eliminar laboratorios donde se dictan los cursos.
-- **Autenticación**: Verificación de usuarios para acceder a las funcionalidades del sistema.
-- **Interfaz de Usuario Intuitiva**: Diseño amigable y fácil de usar con navegación lateral.
+1. Para instalar el proyecto, descarga el zip.
 
-## Instrucciones de Instalación
+2. Luego, debes extrar el .zip en tu disco duro, en la carpeta htdocs de tu servidor. Es recomendado usar XAMPP: `<TU_DISCO_DURO>/xampp/htdocs/sistema-cursos`
 
-1. Clonar el repositorio en el directorio deseado:
+3. Asegurate que el contenido de la carpeta `sistema-cursos`, sea el siguiente:
+   ![Contents of Folder](contents-of-folder.png)
 
-   ```bash
-   git clone https://github.com/pedrouzcategui/sistema-cursos.git
-   ```
+4. Luego, toma el archivo `cerds.sql`, e importalo en `localhost/phpmyadmin`
 
-2. Navegar al directorio del proyecto:
+5. Luego, visita `localhost/sistema-cursos/` (si no te llegase a cargar, puedes visitar `localhost/sistema-cursos/signin`)
 
-   ```bash
-   cd sistema-cursos
-   ```
+## Credenciales de prueba
 
-3. Configurar la base de datos en el archivo `config/database.php`.
+Usuario #1
+User: test
+Password: test
 
-4. Ejecutar las migraciones para crear las tablas necesarias:
+Usuario #2
+User: admintest
+Password: test
 
-   ```bash
-   php artisan migrate
-   ```
+Usuario #3
+User: alexismola
+Password: test
 
-5. Iniciar el servidor local:
+### Características del Sistema
 
-   ```bash
-   php -S localhost:8000
-   ```
-
-6. Acceder al sistema a través del navegador:
-   ```
-   http://localhost:8000
-   ```
-
-## Requisitos del Sistema
-
-- PHP >= 7.4
-- MySQL
-- Composer
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, envía un pull request o abre un issue para discutir los cambios que deseas realizar.
-
-## Licencia
-
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo `LICENSE` para más detalles.
+- Panel de Administración
+- Cursos
+- Instructores
+- Laboratorios
+- Logs
+- Pagos
+- Solicitudes de Tiempo Libre
+- Usuarios

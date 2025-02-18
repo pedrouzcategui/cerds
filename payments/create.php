@@ -7,7 +7,6 @@ require_once "../logs/Log.php";
 
 checkAuth();
 
-// Receive data from POST request
 $student_id = $_POST['student_id'];
 $course_id = $_POST['course_id'];
 $amount = $_POST['amount'];
@@ -16,24 +15,21 @@ $reference = $_POST['reference'];
 $date = $_POST['date'];
 $status = $_POST['status'];
 
-// Handle file upload
+// Manejo de subidas de archivos, se suben en la carpeta uploads
 $image = null;
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $uploadDir = '../uploads/';
     $uploadFile = $uploadDir . basename($_FILES['image']['name']);
     if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
-        $image = basename($_FILES['image']['name']); // Store only the file name with extension
+        $image = basename($_FILES['image']['name']); // Solo se guarda el nombre del archivo.
     } else {
-        die("Failed to upload image.");
+        die("Imagen no pudo ser subida");
     }
 }
 
-// Create new payment
 $payment = Payment::create($student_id, $course_id, $amount, $currency, $reference, $image, $date, $status);
 
-// Log the creation
 $user_id = $_SESSION['user_id'];
 Log::create($user_id, "Registro un nuevo pago: " . $payment->getId());
 
-// Redirect to the payments list or another appropriate page
 header("Location: ./");

@@ -11,7 +11,7 @@ class PTO
     private $start_date;
     private $end_date;
     private $status;
-    private $reason; // New attribute
+    private $reason;
     private static $table = "pto_requests";
 
     // Constructor
@@ -144,7 +144,7 @@ class PTO
             $start_date,
             $end_date,
             $status,
-            $reason // Include the new attribute
+            $reason
         );
     }
 
@@ -158,7 +158,7 @@ class PTO
             $start_date,
             $end_date,
             $status,
-            $reason // Include the new attribute
+            $reason
         );
     }
 

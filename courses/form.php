@@ -13,11 +13,11 @@ if ($is_edit && $course_id) {
     $course = Course::findById($_GET['course_id']);
 }
 
-// Fetch available instructors and labs from the database
+// Busca los instructores en la base de datos
 $instructors = Instructor::getAll();
 $labs = Lab::getAll();
 
-// Define course statuses
+// Define los estatus de los cursos
 $statuses = [
     'pending' => 'Pendiente',
     'in progress' => 'En Progreso',
@@ -170,7 +170,7 @@ $statuses = [
                 <input type="date" id="end_date" name="end_date" required value="<?= $course !== null ? $course->getEndDate() : "" ?>">
             </div>
             <div>
-                <label for="status">Course Status</label>
+                <label for="status">Estado del Curso</label>
                 <select id="status" name="status" required>
                     <option value="" disabled>-- Select Status --</option>
                     <?php foreach ($statuses as $key => $value): ?>

@@ -5,7 +5,7 @@ require_once "./Instructor.php";
 
 checkAuth();
 
-// Check if Edit
+// Chequear si se selecciono la opción para editar
 $is_edit = isset($_GET['is_edit']);
 $instructor_id = isset($_GET['instructor_id']);
 $instructor = null;
@@ -143,11 +143,11 @@ if ($is_edit && $instructor_id) {
             <h2> <?= $is_edit ? "Editar" : "Crear" ?> Perfil de Instructor</h2>
             <form action="<?= $is_edit ? './update.php?instructor_id=' . $instructor->getId() : './create.php' ?>" method="POST">
                 <div class="form-group">
-                    <label for="first_name">First Name</label>
+                    <label for="first_name">Nombre</label>
                     <input type="text" id="first_name" name="first_name" value="<?= $instructor != null ? $instructor->getFirstName() : "" ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="last_name">Last Name</label>
+                    <label for="last_name">Apellido</label>
                     <input type="text" id="last_name" name="last_name" value="<?= $instructor != null ? $instructor->getLastName() : "" ?>" required>
                 </div>
                 <div class="form-group">
@@ -155,7 +155,7 @@ if ($is_edit && $instructor_id) {
                     <input type="email" id="email" name="email" value="<?= $instructor != null ? $instructor->getEmail() : "" ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
+                    <label for="phone">Teléfono</label>
                     <input type="text" id="phone" name="phone" value="<?= $instructor != null ? $instructor->getPhone() : "" ?>" required>
                 </div>
                 <button type="submit" class="btn btn-add"><?= $is_edit ? "Actualizar" : "Crear" ?></button>

@@ -5,7 +5,6 @@ require_once "./Student.php";
 
 checkAuth();
 
-// Check if Edit
 $is_edit = isset($_GET['is_edit']);
 $student_id = isset($_GET['student_id']);
 $student = null;

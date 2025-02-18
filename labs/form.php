@@ -5,7 +5,7 @@ require_once "./Lab.php";
 
 checkAuth();
 
-// Check if Edit
+// Chequear si se selecciono la opción para editar
 $is_edit = isset($_GET['is_edit']);
 $lab_id = isset($_GET['lab_id']);
 $lab = null;
@@ -263,33 +263,26 @@ if ($is_edit && $lab_id) {
 
     <script>
         function validateSlots(day) {
-            // Grab the main error message container
             const errorMessageElement = document.getElementById("error-message");
-            // Clear previous error state
+            // Limpiar el estado de error anterior
             errorMessageElement.style.display = "none";
             errorMessageElement.innerHTML = "";
 
-            // Grab all the slots for the specified day
             const slotsContainer = document.getElementById(`slots_${day}`);
             const slots = slotsContainer.querySelectorAll(".slot");
 
-            // We'll track the end time of the last valid slot
             let lastEndTime = "";
             let hasError = false;
 
-            // Iterate over each slot
+            // Iteramos sobre los slots para validarlos
             for (let i = 0; i < slots.length; i++) {
                 const timeInputs = slots[i].querySelectorAll(".slot-input");
                 const startValue = timeInputs[0].value; // "HH:MM"
                 const endValue = timeInputs[1].value; // "HH:MM"
 
-                // Clear any previous error style
                 slots[i].classList.remove("invalid-slot");
 
-                // ─────────────────────────────────────────────────────
-                // RULE: A slot cannot be completely empty
-                //      (both start & end blank).
-                // ─────────────────────────────────────────────────────
+                // Serie de reglas de validación de horarios
                 if (!startValue && !endValue) {
                     hasError = true;
                     slots[i].classList.add("invalid-slot");
@@ -297,9 +290,8 @@ if ($is_edit && $lab_id) {
                         "Ningún slot puede estar totalmente en blanco (hora de inicio y fin vacías).";
                 }
 
-                // If both times are provided, check the other rules:
+
                 if (startValue && endValue) {
-                    // RULE: Start time cannot be >= end time
                     if (startValue >= endValue) {
                         hasError = true;
                         slots[i].classList.add("invalid-slot");
@@ -307,7 +299,6 @@ if ($is_edit && $lab_id) {
                             "La hora de inicio no puede ser mayor o igual que la hora de fin.";
                     }
 
-                    // RULE: Each subsequent slot must start strictly after the previous slot’s end time
                     if (lastEndTime && startValue <= lastEndTime) {
                         hasError = true;
                         slots[i].classList.add("invalid-slot");
@@ -316,14 +307,11 @@ if ($is_edit && $lab_id) {
                     }
                 }
 
-                // If no error so far for this slot, update lastEndTime to the current slot's end time
-                // (only if endValue is actually filled)
                 if (!hasError && endValue) {
                     lastEndTime = endValue;
                 }
             }
 
-            // If any error is detected, display the error message container
             if (hasError) {
                 errorMessageElement.style.display = "block";
             }
@@ -333,9 +321,7 @@ if ($is_edit && $lab_id) {
             const slotsContainer = document.getElementById(`slots_${day}`).querySelector('.slots-list');
             const allSlots = slotsContainer.querySelectorAll('.slot');
 
-            // ─────────────────────────────────────────────────────────
-            //   PREVENT ADDING A NEW SLOT IF THE LAST SLOT IS EMPTY
-            // ─────────────────────────────────────────────────────────
+            // No añadas un slot si está vacío
             if (allSlots.length > 0) {
                 const lastSlot = allSlots[allSlots.length - 1];
                 const timeInputs = lastSlot.querySelectorAll('.slot-input');
@@ -380,7 +366,7 @@ if ($is_edit && $lab_id) {
                 slot.querySelector('span').textContent = `Horario #${index + 1}`;
                 const timeInputs = slot.querySelectorAll('input[type="time"]');
 
-                // Re-assign the name attributes to keep them consistent
+                // Re-assignar los nombres para mantener consistencia
                 timeInputs[0].name = `${day}_start_time_slot_${index + 1}`;
                 timeInputs[1].name = `${day}_end_time_slot_${index + 1}`;
             });

@@ -5,6 +5,7 @@ require_once "./Course.php";
 
 checkAuth();
 
+// Obtiene todos los cursos, ordenados de manera descendente
 $courses = Course::getAll('DESC');
 
 ?>

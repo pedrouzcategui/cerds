@@ -13,7 +13,6 @@ if ($is_edit && $pto_id) {
     $pto = PTO::findById($pto_id);
 }
 
-// Fetch available instructors and courses from the database
 $instructors = Instructor::getAll();
 $courses = Course::getAll();
 ?>

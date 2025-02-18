@@ -190,7 +190,6 @@ $ptos = PTO::getAll('DESC');
                         <th>Fecha de Inicio</th>
                         <th>Fecha de Finalización</th>
                         <th>Razón</th>
-                        <th>Estatus</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -205,7 +204,6 @@ $ptos = PTO::getAll('DESC');
                             <td><?= $pto->getStartDate() ?></td>
                             <td><?= $pto->getEndDate() ?></td>
                             <td><?= $pto->getReason() ?></td>
-                            <td><?= $pto->getStatus() ?></td>
                             <td class="actions">
                                 <a href="form.php?is_edit=true&pto_id=<?= $pto->getId() ?>" class="btn btn-edit">Editar</a>
                                 <a href="delete.php?pto_id=<?= $pto->getId() ?>" class="btn btn-delete">Eliminar</a>

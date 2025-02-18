@@ -10,18 +10,18 @@ if ($is_edit && $payment_id) {
     $payment = Payment::findById($_GET['payment_id']);
 }
 
-// Fetch available students and courses from the database
+// Obtiene estudiantes y profesores disponibles
 $students = Student::getAll();
 $courses = Course::getAll();
 
-// Define payment statuses
+// Estados de pago
 $statuses = [
     'pending' => 'Pending',
     'completed' => 'Completed',
     'failed' => 'Failed'
 ];
 
-// Define currencies
+// Monedas
 $currencies = [
     'VES' => 'VES',
     'USD' => 'USD'

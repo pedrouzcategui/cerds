@@ -5,6 +5,7 @@ require_once "../logs/Log.php";
 require_once "../utils.php";
 require_once "./Course.php";
 
+// Funcion para chequear que el usuario este logeado
 checkAuth();
 
 $course_id = $_GET['course_id'];

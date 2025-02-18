@@ -79,6 +79,7 @@ class Course
     {
         return Lab::findById($this->lab_id);
     }
+
     // Setters
     public function setId($id)
     {
@@ -204,7 +205,7 @@ class Course
 
     public function getCurrentEnrollments()
     {
-        $result = DB::query("SELECT COUNT(*) as count FROM enrollments WHERE course_id = ?", [$this->id]);
+        $result = DB::query("SELECT COUNT(*) as count FROM payments WHERE course_id = ?", [$this->id]);
         return $result[0]['count'];
     }
 

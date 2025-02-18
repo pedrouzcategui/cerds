@@ -1,7 +1,7 @@
 <?php
 
-require_once "./utils.php";
-require_once "./users/User.php";
+require_once "../utils.php";
+require_once "../users/User.php";
 
 session_start();
 
@@ -79,7 +79,7 @@ unset($_SESSION['error']);
         <?php if ($error): ?>
             <p style="color: red;"><?= $error ?></p>
         <?php endif; ?>
-        <form method="POST" action="login.php">
+        <form method="POST" action="../login/index.php">
             <div>
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" required>
