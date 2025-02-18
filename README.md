@@ -13,23 +13,25 @@ El sistema de administración de cursos CERDS es un sistema fácil de usar, con 
 3. Asegurate que el contenido de la carpeta `sistema-cursos`, sea el siguiente:
    ![Contents of Folder](contents-of-folder.png)
 
-4. Luego, toma el archivo `cerds.sql`, e importalo en `localhost/phpmyadmin`
+4. Luego, toma el archivo `cerds.sql`, e importalo en `localhost/phpmyadmin` (si deseas un archivo SOLO para crear la base de datos vacia, puedes usar `init.sql`, pero los datos de prueba SOLO estan si importas `cerds.sql`.)
+
+![Importing SQL Cerds File](importing-cerds.png)
 
 5. Luego, visita `localhost/sistema-cursos/` (si no te llegase a cargar, puedes visitar `localhost/sistema-cursos/signin`)
 
 ## Credenciales de prueba
 
-Usuario #1
-User: test
-Password: test
+- Usuario #1
+  -- User: test
+  -- Password: test
 
-Usuario #2
-User: admintest
-Password: test
+- Usuario #2
+  -- User: admintest
+  -- Password: test
 
-Usuario #3
-User: alexismola
-Password: test
+- Usuario #3
+  -- User: alexismola
+  -- Password: test
 
 ### Características del Sistema
 
